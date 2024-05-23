@@ -71,7 +71,41 @@ namespace TestCoreApp.Controllers
         }
 
 
+        //GET
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var order = _db.Orders.Find(Id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            createSelectList(order.FoodId);
+            return View(order);
+        }
 
-
+        //POST
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteOrder(int? Id)
+        {
+            var order = _db.Orders.Find(Id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            _db.Remove(order);
+            _db.SaveChanges();
+            TempData["successData"] = "food has been deleted successfully";
+            return RedirectToAction("Index");
+        }
     }
+
+
+
+
+}
 }

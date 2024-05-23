@@ -27,8 +27,21 @@
                 <th scope="col">
                     Food
                 </th>
+
                 <th scope="col">
                     OrderDate
+                </th>
+
+                <th scope="col">
+                    ClientName
+                </th>
+
+                <th scope="col">
+                    ClientPhone
+                </th>
+
+                <th scope="col">
+                    ClientAddress
                 </th>
                
                 <th scope="col">
@@ -42,9 +55,26 @@
                     <td scope="row" width="30%">
                         @item.Food!.Name
                     </td>
+
                     <td width="20%">
                         @item.CreatedDate
                     </td>
+
+                    <td width="20%">
+                        @item.ClientName
+                    </td>
+
+                    <td width="20%">
+                        @item.ClientPhone
+                    </td>
+
+
+                    <td width="20%">
+                        @item.ClientAddress
+                    </td>
+
+
+
                     <td>
                         <a asp-controller="Food" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-sm btn-success">
                             <i class="bi bi-pencil"></i>

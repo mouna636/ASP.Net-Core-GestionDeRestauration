@@ -11,7 +11,19 @@ namespace TestCoreApp.Models
         [Required]
         public string Name { get; set; } = "";
 
+        [Required]
+        public String ClientName { get; set; }
+
+        [Required]
+        public string ClientPhone { get; set; }
+
+        [Required]
+        public string ClientAddress { get; set; }
+
         
+
+
+
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         [Required]
