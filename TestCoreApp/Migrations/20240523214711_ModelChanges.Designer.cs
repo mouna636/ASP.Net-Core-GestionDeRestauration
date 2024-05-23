@@ -12,8 +12,8 @@ using TestCoreApp.Data;
 namespace TestCoreApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240522205200_Food")]
-    partial class Food
+    [Migration("20240523214711_ModelChanges")]
+    partial class ModelChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,15 +54,15 @@ namespace TestCoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e1a8b70c-9eaf-4ce1-b086-eff753c9c09d",
-                            ConcurrencyStamp = "7c5caded-7041-45de-951b-52c78afe3c30",
+                            Id = "fb3c33e9-b934-4b60-bd8e-744c366532fe",
+                            ConcurrencyStamp = "c6c37da4-c187-4fae-9c44-a0f47d1a15dd",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "43141cc3-97a3-4574-8451-a93e814f13f6",
-                            ConcurrencyStamp = "d94d5b68-405d-4fcc-806e-a79c8c72ebe4",
+                            Id = "5f23827c-f4e9-4d77-9e2f-1060a350135e",
+                            ConcurrencyStamp = "6641c989-48ae-4918-8dfe-a6c8f528755e",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -251,12 +251,12 @@ namespace TestCoreApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("dbImage")
-                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
@@ -271,17 +271,17 @@ namespace TestCoreApp.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Computers"
+                            Name = "Italien Food"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Mobiles"
+                            Name = "Chinese Food"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Electric machines"
+                            Name = "Tunisian Food"
                         });
                 });
 
@@ -314,6 +314,43 @@ namespace TestCoreApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("TestCoreApp.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClientAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -378,9 +415,25 @@ namespace TestCoreApp.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TestCoreApp.Models.Order", b =>
+                {
+                    b.HasOne("TestCoreApp.Models.Food", "Food")
+                        .WithMany("Orders")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
+                });
+
             modelBuilder.Entity("TestCoreApp.Models.Category", b =>
                 {
                     b.Navigation("Foods");
+                });
+
+            modelBuilder.Entity("TestCoreApp.Models.Food", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

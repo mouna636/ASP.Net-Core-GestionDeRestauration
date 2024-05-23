@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TestCoreApp.Data;
@@ -6,6 +7,7 @@ using TestCoreApp.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 namespace TestCoreApp.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         public OrderController(AppDbContext db, IHostingEnvironment host)
@@ -107,5 +109,4 @@ namespace TestCoreApp.Controllers
 
 
 
-}
 }

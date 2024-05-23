@@ -4,23 +4,19 @@
 @if (TempData["successData"] != null)
 {
 
-    <h3 style="color:brown;">
+        <h3 style="color:#3b9545;">
         @TempData["successData"]
     </h3>
 
-    <script type="text/javascript">
-        toastr.success('@TempData["successData"]', 'Success');
-    </script>
+  
 }
 
 
 @if (TempData["errorData"] != null)
 {
-    <h3 style="color:brown;">
+        <h3 style="color:#BB2D3B;">
         @TempData["errorData"]
     </h3>
 
-    <script type="text/javascript">
-        toastr.error('@TempData["errorData"]', 'Error');
-    </script>
+   
 }

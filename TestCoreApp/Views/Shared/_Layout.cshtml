@@ -29,17 +29,13 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link scrollto" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
-                    <li><a class="nav-link scrollto" asp-area="" asp-controller="Food" asp-action="Index">Food</a></li>
-                    <li><a class="nav-link scrollto" asp-area="" asp-controller="Order" asp-action="Index">Order</a></li>
-                    <li><a class="nav-link scrollto" href="#events">Events</a></li>
-                    <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
-                    <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
+                    <li><a class="nav-link" asp-area="" asp-controller="Food" asp-action="Index">Food</a></li>
+                    <li><a class="nav-link" asp-area="" asp-controller="Order" asp-action="Index">Order</a></li>
+                     <partial name="_LoginPartial" />
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-                     <partial name="_LoginPartial" />
                 
             </nav>
         </div>

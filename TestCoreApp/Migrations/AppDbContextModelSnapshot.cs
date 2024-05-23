@@ -51,15 +51,15 @@ namespace TestCoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "65b4d897-bae7-4323-850c-baec3df43d5d",
-                            ConcurrencyStamp = "f26fc2b3-4740-451c-b60f-e14ccc910b7e",
+                            Id = "fb3c33e9-b934-4b60-bd8e-744c366532fe",
+                            ConcurrencyStamp = "c6c37da4-c187-4fae-9c44-a0f47d1a15dd",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "1bde3af4-36eb-461f-baea-f3d9cf5ed91e",
-                            ConcurrencyStamp = "086d24f5-0ef0-4483-b6a6-049ab03d8de9",
+                            Id = "5f23827c-f4e9-4d77-9e2f-1060a350135e",
+                            ConcurrencyStamp = "6641c989-48ae-4918-8dfe-a6c8f528755e",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -248,12 +248,12 @@ namespace TestCoreApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("dbImage")
-                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
@@ -320,6 +320,18 @@ namespace TestCoreApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClientAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");

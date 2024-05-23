@@ -8,7 +8,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace TestCoreApp.Controllers
 {
-
+    [Authorize]
     public class CategoryController : Controller
     {
         public CategoryController(IUnitOfWork _myUnit) 
