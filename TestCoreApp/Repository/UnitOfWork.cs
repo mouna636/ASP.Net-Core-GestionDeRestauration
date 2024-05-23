@@ -18,7 +18,7 @@ namespace TestCoreApp.Repository
         public IRepository<Category> categories { get; private set; }
 
         public IRepository<Food> items { get; private set; }
-
+        public IRepository<Order> orders { get; private set; }
 
         public int CommitChanges()
         {

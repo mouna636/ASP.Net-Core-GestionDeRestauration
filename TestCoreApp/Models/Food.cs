@@ -28,5 +28,6 @@ namespace TestCoreApp.Models
         public IFormFile clientFile { get; set; }
 
         public Category? Category { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

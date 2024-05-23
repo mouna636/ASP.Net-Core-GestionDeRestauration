@@ -21,10 +21,7 @@ namespace TestCoreApp.Controllers
         private readonly IUnitOfWork myUnit;
 
 
-        //public IActionResult Index()
-        //{
-        //    return View(_repository.FindAll());
-        //}
+       
 
         public async Task<IActionResult> Index()
         {

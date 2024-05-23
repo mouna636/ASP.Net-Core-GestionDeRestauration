@@ -51,15 +51,15 @@ namespace TestCoreApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "76250921-86b4-40bb-83dd-a1b51aa9aa6b",
-                            ConcurrencyStamp = "575046d6-a839-416c-8dce-9dba8ce449fc",
+                            Id = "65b4d897-bae7-4323-850c-baec3df43d5d",
+                            ConcurrencyStamp = "f26fc2b3-4740-451c-b60f-e14ccc910b7e",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "807e992f-0f18-4f56-9053-c1d1f4ab20ba",
-                            ConcurrencyStamp = "f88059e6-67ea-4310-a1ef-fa182d878e18",
+                            Id = "1bde3af4-36eb-461f-baea-f3d9cf5ed91e",
+                            ConcurrencyStamp = "086d24f5-0ef0-4483-b6a6-049ab03d8de9",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -313,6 +313,31 @@ namespace TestCoreApp.Migrations
                     b.ToTable("Foods");
                 });
 
+            modelBuilder.Entity("TestCoreApp.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -375,9 +400,25 @@ namespace TestCoreApp.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("TestCoreApp.Models.Order", b =>
+                {
+                    b.HasOne("TestCoreApp.Models.Food", "Food")
+                        .WithMany("Orders")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
+                });
+
             modelBuilder.Entity("TestCoreApp.Models.Category", b =>
                 {
                     b.Navigation("Foods");
+                });
+
+            modelBuilder.Entity("TestCoreApp.Models.Food", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
