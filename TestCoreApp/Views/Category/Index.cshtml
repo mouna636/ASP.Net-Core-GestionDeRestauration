@@ -3,28 +3,28 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container p-3">
+<div class="container p-3  " style="margin-top: 10rem">
 
 
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">foods View</h2>
+            <h2 class="text-white">foods View</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="New" class="btn btn-primary">
+            <a asp-controller="Category" asp-action="New" class="btn btn-success">
                 <i class="bi bi-plus"></i> &nbsp; Add New food
             </a>
         </div>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col">
                     Category Name
                 </th>
                 <th scope="col">
-                    Image
+                    Description
                 </th>
                 <th scope="col">
                 </th>
@@ -37,9 +37,9 @@
                     <td scope="row" width="30%">
                         @food.Name
                     </td>
-                    <td>
-                        <img src="@food.imageSrc" style="width:48px" class="img-thumbnail" />
-                    </td>
+                        <td scope="row" width="30%">
+                        @food.Description
+                        </td>
                     <td>
                         <a asp-controller="Category" asp-action="Edit" asp-route-Id="@food.Id" class="btn btn-sm btn-success">
                             <i class="bi bi-pencil"></i>

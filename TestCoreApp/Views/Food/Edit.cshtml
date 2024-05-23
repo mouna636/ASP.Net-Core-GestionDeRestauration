@@ -3,10 +3,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" style="margin-top: 20rem">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Edit Item</h2>
+            <h2 class="text-white">Edit Item</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
@@ -30,8 +30,7 @@
             <input type="file" asp-for="clientFile" onchange="loadFile(event)" />
             <img id="myImg" height="200" />
         </div>
-        <br />
-        <hr />
+
         <button type="submit" class="btn btn-primary" style="width:150px">Save</button>
         <a asp-action="Index" asp-controller="Food" class="btn btn-secondary" style="width:150px">
             back to items

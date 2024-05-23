@@ -22,6 +22,9 @@ namespace TestCoreApp.Controllers
             return View(OrdersList);
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult New(Order order)
         {
             if (order.Name == "100")

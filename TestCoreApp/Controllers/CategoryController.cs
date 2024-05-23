@@ -25,9 +25,9 @@ namespace TestCoreApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var oneCat = myUnit.categories.SelectOne(x => x.Name == "Chinese");
+            var oneCat = myUnit.categories.SelectOne(x => x.Name == "Chinese Food");
 
-            var allCat = await myUnit.categories.FindAllAsync("Food"); 
+            var allCat = await myUnit.categories.FindAllAsync("Foods"); 
 
             return View(allCat);
         }
@@ -46,12 +46,7 @@ namespace TestCoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (category.clientFile != null)
-                {
-                    MemoryStream stream = new MemoryStream();
-                    category.clientFile.CopyTo(stream);
-                    category.dbImage = stream.ToArray();
-                }
+              
                 myUnit.categories.AddOne(category);
                 return RedirectToAction("Index");
             }
@@ -79,18 +74,19 @@ namespace TestCoreApp.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category category)
+        public async Task<IActionResult> Edit(Category category)
         {
             if (ModelState.IsValid)
             {
+    
+
                 myUnit.categories.UpdateOne(category);
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View(category);
-            }
+
+            return View(category);
         }
+
 
         //GET
         public IActionResult Delete(int? Id)

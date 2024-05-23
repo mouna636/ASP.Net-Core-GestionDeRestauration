@@ -21,6 +21,8 @@ namespace TestCoreApp.Models
 
 
         public Food? Food { get; set; }
+
+
     }
 }
 
